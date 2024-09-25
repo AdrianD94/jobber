@@ -23,18 +23,12 @@
         "previewTargetName": "preview"
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
     {
       "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      },
+      "options": { "targetName": "test" },
       "exclude": ["apps/jobber-auth-e2e/**/*"]
     }
-  ]
+  ],
+  "nxCloudId": "66f3ca949b96e1b65a30966c"
 }
