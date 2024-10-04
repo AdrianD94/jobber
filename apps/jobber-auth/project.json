@@ -5,7 +5,10 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "build":{
+    "build": {
+      "dependsOn": ["generate-types"]
+    },
+    "test": {
       "dependsOn": ["generate-types"]
     },
     "serve": {
@@ -25,17 +28,17 @@
         }
       }
     },
-    "generate-types":{
-     "command": "prisma generate",
-     "options": {
-      "cwd": "apps/jobber-auth"
-     }
+    "generate-types": {
+      "command": "prisma generate",
+      "options": {
+        "cwd": "apps/jobber-auth"
+      }
     },
-    "migrate-prisma":{
-     "command": "prisma migrate dev",
-     "options": {
-      "cwd": "apps/jobber-auth"
-     }
+    "migrate-prisma": {
+      "command": "prisma migrate dev",
+      "options": {
+        "cwd": "apps/jobber-auth"
+      }
     }
   }
 }
