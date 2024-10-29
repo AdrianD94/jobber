@@ -26,7 +26,7 @@ export class JobsService implements OnModuleInit {
     return this.jobs.map((job) => job.meta);
   }
 
-  async executeJob(jobName: string) {
+  async executeJob(jobName: string, data: object) {
     const job = this.jobs.find((j) => j.meta.name === jobName);
     if (!job) {
       throw new BadRequestException(`Job with name ${jobName} not found`);
@@ -36,8 +36,7 @@ export class JobsService implements OnModuleInit {
         `Job with name ${jobName} is not an instance of AbstractJob`
       );
     }
-
-    await job.discoveredClass.instance.execute({}, job.meta.name);
+    await job.discoveredClass.instance.execute(data, job.meta.name);
     return job.meta;
   }
 }

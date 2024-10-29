@@ -7,14 +7,9 @@ services:
       POSTGRES_PASSWORD: examplepass
     ports:
       - '5412:5432'
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
   pulsar:
     image: apachepulsar/pulsar
     command: >
       /pulsar/bin/pulsar standalone
     ports:
       - '6650:6650'
-
-volumes:
-  postgres_data:
