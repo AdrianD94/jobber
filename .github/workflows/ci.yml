@@ -46,11 +46,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
-      
+
       - name: Log in to Amazon ECR
-        run: | 
+        run: |
           aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 970547339844.dkr.ecr.eu-central-1.amazonaws.com
-      
+
       - name: Build and push all images to ECR
         run: |
           IMAGES=(
@@ -65,7 +65,7 @@ jobs:
 
             {
             docker build \
-              --tag 970547339844.dkr.ecr.eu-central-1.amazonaws.com/jobber/$NAME:latest
+              --tag 970547339844.dkr.ecr.eu-central-1.amazonaws.com/jobber/$NAME:latest \
               -f $DOCKERFILE \
               . && docker push 970547339844.dkr.ecr.eu-central-1.amazonaws.com/jobber/$NAME:latest
             } & 
