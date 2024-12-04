@@ -31,6 +31,6 @@ ENV NODE_ENV=production
 
 RUN npm ci
 
-COPY --from=builder /workspace/dist/ ./dist
+COPY --from=builder /workspace/dist ./dist
 
 CMD ["node", "dist/apps/executor/main"]
