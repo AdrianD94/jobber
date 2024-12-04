@@ -1,0 +1,65 @@
+global:
+  imagePullPolicy: Always
+
+pulsar:
+  namespace: pulsar
+  namespaceCreate: true
+  zookeeper:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  broker:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  bookkeeper:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  autorecovery:
+    podMonitor:
+      enabled: false
+  proxy:
+    replicaCount: 1
+    podMonitor:
+      enabled: false
+  kube-prometheus-stack:
+    enabled: false
+    prometheusOperator:
+      enabled: false
+    grafana:
+      enabled: false
+    alertmanager:
+      enabled: false
+    prometheus:
+      enabled: false
+
+postgresql:
+  namespaceOverride: postgresql
+  auth:
+    username: postgres
+    password: postgres
+    database: jobber
+
+jobs:
+  enabled: true
+  replicas: 1
+  image: '970547339844.dkr.ecr.eu-central-1.amazonaws.com/jobber/jobs:latest'
+  port: 3001
+
+executor:
+  enabled: true
+  replicas: 1
+  image: '970547339844.dkr.ecr.eu-central-1.amazonaws.com/jobber/executor:latest'
+  port: 3002
+
+auth:
+  enabled: true
+  replicas: 1
+  image: '970547339844.dkr.ecr.eu-central-1.amazonaws.com/jobber/auth:latest'
+  port:
+    http: 3000
+    grpc: 5000
+  jwt:
+    secret: 31FDUHHUdaXYQeN2jiofyPTnIGSjGbFP
+    expirationMs: 28800000
